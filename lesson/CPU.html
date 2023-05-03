@@ -1,0 +1,159 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastering Chrome DevTools</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/prism.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Introduction to Chrome DevTools v3</a></li>
+        <li><a href="/lessons">Lessons</a></li>
+        <li><a href="/exercises">Exercises</a></li>
+      </ul>
+    </nav>
+    <article id="main">
+      <h1 id="on-page-performance">On Page Performance</h1>
+      <p>In this lesson we&#39;ll learn:</p>
+      <ul>
+        <li>How to read a flamegraph</li>
+        <li>Find page jank</li>
+        <li>Paint rectangles</li>
+        <li>Check your applications FPS</li>
+        <li>Understand scripting, rendering and painting</li>
+        <li>Find slow functions</li>
+        <li>Web vitals</li>
+      </ul>
+      <h2 id="rail">Rail</h2>
+      <p><img src="/img/rail.png" alt="Chrome&#39;s RAIL model" /></p>
+      <p>
+        <strong>0 to 16 ms</strong> Users are exceptionally good at tracking
+        motion, and they dislike it when animations aren&#39;t smooth. They
+        perceive animations as smooth so long as 60 new frames are rendered
+        every second. That&#39;s 16 ms per frame, including the time it takes
+        for the browser to paint the new frame to the screen, leaving an app
+        about 10 ms to produce a frame.
+      </p>
+      <p>
+        <strong>0 to 100 ms</strong> Respond to user actions within this time
+        window and users feel like the result is immediate. Any longer, and the
+        connection between action and reaction is broken.
+      </p>
+      <p>
+        <strong>100 to 1000 ms</strong> Within this window, things feel part of
+        a natural and continuous progression of tasks. For most users on the
+        web, loading pages or changing views represents a task.
+      </p>
+      <p>
+        <strong>1000 ms or more</strong> Beyond 1000 milliseconds (1 second),
+        users lose focus on the task they are performing.
+      </p>
+      <p>
+        <strong>10000 ms or more</strong> Beyond 10000 milliseconds (10
+        seconds), users are frustrated and are likely to abandon tasks. They may
+        or may not come back later.
+      </p>
+      <h2 id="what-is-page-jank-">What is page jank?</h2>
+      <blockquote>
+        <p>
+          Jank is any stuttering, juddering or just plain halting that users see
+          when a site or app isn&#39;t keeping up with the refresh rate.
+        </p>
+      </blockquote>
+      <h2 id="understanding-60-fps">Understanding 60 FPS</h2>
+      <p>
+        Most devices today refresh their screens 60 times a second. The browser
+        needs to match the device’s refresh rate and put up 1 new picture, or
+        frame, for each of those screen refreshes.
+      </p>
+      <p>
+        Each of those frames has a budget of just over 16ms (1 second / 60 =
+        16.66ms). In reality, however, the browser has housekeeping work to do,
+        so all of your work needs to be completed inside 10ms.
+      </p>
+      <h2 id="pragmatic-approaches">Pragmatic Approaches</h2>
+      <ul>
+        <li>Use requestAnimationFrame</li>
+        <li>Use Web Workers</li>
+        <li>Use a framework</li>
+        <li>Reduce complexity</li>
+      </ul>
+      <h3 id="requestanimationframe">requestAnimationFrame</h3>
+      <pre><code class="lang-javascript"><span class="hljs-comment">// Read</span>
+<span class="hljs-keyword">var</span> h1 = element1.clientHeight;
+
+<span class="hljs-comment">// Write (invalidates layout)</span>
+element1.style.height = (h1 * <span class="hljs-number">2</span>) + <span class="hljs-string">'px'</span>
+
+<span class="hljs-comment">// Read (triggers layout)</span>
+<span class="hljs-keyword">var</span> h2 = element2.clientHeight;
+
+<span class="hljs-comment">// Write (invalidates layout)</span>
+element2.style.height = (h2 * <span class="hljs-number">2</span>) + <span class="hljs-string">'px'</span>
+
+<span class="hljs-comment">// Read (triggers layout)</span>
+<span class="hljs-keyword">var</span> h3 = element3.clientHeight;
+
+<span class="hljs-comment">// Write (invalidates layout)</span>
+element3.style.height = (h3 * <span class="hljs-number">2</span>) + <span class="hljs-string">'px'</span>
+</code></pre>
+      <p>Enter <code>requestAnimationFrame()</code></p>
+      <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">repeatOften</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Do whatever</span>
+  requestAnimationFrame(repeatOften);
+}
+requestAnimationFrame(repeatOften);
+</code></pre>
+      <p>
+        After watching the layout thrashing video, head over to the
+        <a href="/exercise/thrashing">layout thrashing exercise</a>
+      </p>
+      <h2 id="web-workers">Web Workers</h2>
+      <p>You can invoke a worker from any JavaScript file like this:</p>
+      <pre><code class="lang-javascript"><span class="hljs-comment">// script.js</span>
+<span class="hljs-keyword">const</span> input = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"#input"</span>);
+<span class="hljs-keyword">const</span> display = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"#display"</span>);
+
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.Worker) {
+  <span class="hljs-keyword">const</span> myWorker = <span class="hljs-keyword">new</span> Worker(<span class="hljs-string">"worker.js"</span>);
+
+  input.onchange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    myWorker.postMessage(input.value);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Message posted to worker"</span>);
+  };
+
+  myWorker.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+    display.textContent = e.data;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Message received from worker"</span>);
+  };
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Your browser doesn't support web workers."</span>);
+}
+</code></pre>
+      <p>And then just create a <code>worker.js</code> file like this:</p>
+      <pre><code class="lang-javascript"><span class="hljs-comment">// worker.js</span>
+onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Worker: Message received from main script"</span>);
+  <span class="hljs-keyword">const</span> result = e.data;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Worker: Posting message back to main script"</span>);
+  postMessage(<span class="hljs-string">`Worker received <span class="hljs-subst">${result}</span> from the main script`</span>);
+};
+</code></pre>
+      <h2 id="running-devtools-on-node-js-apps">
+        Running DevTools on Node.js apps
+      </h2>
+      <p>Try killing the current process and running</p>
+      <pre><code class="lang-bash"><span class="hljs-keyword">node</span> <span class="hljs-title">--inspect</span> server/server.js
+</code></pre>
+      <h2 id="next-lesson">Next Lesson</h2>
+      <p>
+        We&#39;ve covered a lot about CPU performance, now let&#39;s take a look
+        at Memory management in the <a href="/lesson/Memory">next Lesson</a>
+      </p>
+    </article>
+    <script src="/js/prism.js"></script>
+  </body>
+</html>

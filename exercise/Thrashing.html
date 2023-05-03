@@ -1,0 +1,56 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastering Chrome DevTools</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/prism.css" />
+    <link rel="stylesheet" href="/css/thrashing.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Introduction to Chrome DevTools v3</a></li>
+        <li><a href="/lessons">Lessons</a></li>
+        <li><a href="/exercises">Exercises</a></li>
+      </ul>
+    </nav>
+    <article id="main">
+      <h1 id="layout-thrashing">Layout Thrashing</h1>
+      <p>
+        This page loads just fine and the Frontend Master logos don&#39;t cause
+        and jank. But try adding 100. Do the animations stay smooth or get
+        choppy? What if you add 200? 300? 400?
+      </p>
+      <p>
+        Use the &quot;Add 100&quot; button to generate enough images to cause
+        significant jank. Then open up the DevTools and run a profile.
+      </p>
+      <ol>
+        <li>
+          Notice how you can quickly tell that there is page jank? Can you find
+          the specific function that is causing the slowdown?
+        </li>
+        <li>
+          Notice when you hip the Optimize button things get a lot smoother. Can
+          you find what optimize does to make the site go so much faster?
+        </li>
+      </ol>
+      <div id="app">
+        <img class="proto mover" src="/img/logo.jpeg" />
+        <div class="controls">
+          <button class="add"></button>
+          <button class="subtract" disabled></button>
+          <button class="stop">Stop</button>
+          <button class="optimize">Optimize</button>
+        </div>
+      </div>
+
+      <h2 id="finished-">Finished?</h2>
+      <p>Head back to the <a href="/lesson/CPU">CPU Lesson</a></p>
+    </article>
+    <script src="/js/prism.js"></script>
+    <script src="/js/thrashing.js"></script>
+  </body>
+</html>

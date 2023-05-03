@@ -1,0 +1,198 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastering Chrome DevTools</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/prism.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Introduction to Chrome DevTools v3</a></li>
+        <li><a href="/lessons">Lessons</a></li>
+        <li><a href="/exercises">Exercises</a></li>
+      </ul>
+    </nav>
+    <article id="main">
+      <h1 id="network-performance">Network Performance</h1>
+      <h3 id="in-this-lesson-we-ll-learn">In this lesson we&#39;ll learn</h3>
+      <ul>
+        <li>
+          <a href="#interesting-facts-about-page-load-time"
+            >Page load market research</a
+          >
+        </li>
+        <li><a href="#the-network-waterfall">The Network waterfall</a></li>
+        <li>
+          <a href="#network-performance-isn-t-everything-">JS Parse cost</a>
+        </li>
+      </ul>
+      <h2 id="interesting-facts-about-page-load-time">
+        Interesting facts about page load time
+      </h2>
+      <blockquote>
+        <p>
+          Walmart and Amazon both observed a 1% increase in earnings for every
+          100 milliseconds of improved webpage speed.
+        </p>
+        <p>
+          Yahoo saw a 9% increase in traffic to every 400 milliseconds of
+          webpage speed improvement.
+        </p>
+        <p>
+          Google loses 20% of their traffic for every additional 100
+          milliseconds it takes for a page to load.
+        </p>
+      </blockquote>
+      <p><img src="/img/google-marketing.png" alt="Google Marketing" /></p>
+      <p>In this lesson, we&#39;ll learn about</p>
+      <ul>
+        <li>Network terminology</li>
+        <li>Filtering requests</li>
+        <li>Inspecting packets</li>
+        <li>Watching your app load with screenshots</li>
+        <li>Simulate Network conditions</li>
+        <li>Emulate offline mode</li>
+        <li>The Network waterfall</li>
+      </ul>
+      <h2 id="the-network-waterfall">The Network Waterfall</h2>
+      <p>Let&#39;s talk about the life of a network request.</p>
+      <ul>
+        <li>
+          ◻️ <strong>Queueing</strong>
+          <ul>
+            <li>There are higher priority requests.</li>
+            <li>
+              There are already six TCP connections open for this origin, which
+              is the limit. Applies to HTTP/1.0 and HTTP/1.1 only.
+            </li>
+            <li>The browser is briefly allocating space in the disk cache</li>
+          </ul>
+        </li>
+        <li>
+          ⬜️ <strong>Stalled</strong>
+          <ul>
+            <li>The request is stuck Queueing</li>
+          </ul>
+        </li>
+        <li>
+          🟩 <strong>DNS Lookup</strong>
+          <ul>
+            <li>Resolving an IP address</li>
+          </ul>
+        </li>
+        <li>
+          🟧 <strong>Initial Connection</strong>
+          <ul>
+            <li>TCP handshakes or establishing SSL</li>
+          </ul>
+        </li>
+        <li>
+          🟧 <strong>Service Worker Startup</strong>
+          <ul>
+            <li>Starting up a Service Worker</li>
+          </ul>
+        </li>
+        <li>
+          🟪 <strong>Service Worker respondsWith</strong>
+          <ul>
+            <li>Service Worker sending data to browser</li>
+          </ul>
+        </li>
+        <li>
+          🟩 <strong>Waiting (TTFB)</strong>
+          <ul>
+            <li>Waiting for the first byte from the server</li>
+          </ul>
+        </li>
+        <li>
+          🟦 <strong>Content Download</strong>
+          <ul>
+            <li>Browser is receiving a response from a server</li>
+          </ul>
+        </li>
+      </ul>
+      <h2 id="network-performance-isn-t-everything-">
+        Network performance isn&#39;t everything!
+      </h2>
+      <p>
+        We spend so much energy compressing and combining JavaScript into dense
+        bundles so they travel across the network faster! But that&#39;s not the
+        whole story.
+      </p>
+      <p>
+        This entire
+        <a
+          href="https://medium.com/reloading/javascript-start-up-performance-69200f43b201"
+          >article</a
+        >
+        is worth a read but the TL;DR is that parse time is a huge performance
+        problem, especially for mobile devices.
+      </p>
+      <p><img src="/img/js-parse.png" alt="JS parse cost" /></p>
+      <p><img src="/img/parse-time.png" alt="JS parse cost" /></p>
+      <h2 id="measuring-real-user-performance">
+        Measuring real user performance
+      </h2>
+      <p>Why measure performance from real users?</p>
+      <h3 id="first-we-had-gettime">First we had getTime</h3>
+      <pre><code class="lang-javascript">
+        const start = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();
+        
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100000</span>; i++) {
+          <span class="hljs-comment">// Do nothing</span>
+        }
+        
+        const <span class="hljs-keyword">end</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();
+        
+        console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">end</span> - start);
+        </code></pre>
+      <h3 id="then-we-got-console-time">Then we got console.time</h3>
+      <pre><code class="lang-javascript">
+        <span class="hljs-built_in">console</span>.time(<span class="hljs-string">"doNothing"</span>);
+        
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100000</span>; i++) {
+          <span class="hljs-comment">// Do nothing</span>
+        }
+        
+        <span class="hljs-built_in">console</span>.timeEnd(<span class="hljs-string">"doNothing"</span>);
+        </code></pre>
+      <h3 id="now-we-have-performance-mark-and-measure-">
+        Now we have performance mark and measure!
+      </h3>
+      <pre><code class="lang-javascript">
+        <span class="hljs-selector-tag">performance</span><span class="hljs-selector-class">.mark</span>(<span class="hljs-string">"Start"</span>);
+        
+        <span class="hljs-selector-tag">for</span> (let i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000000000</span>; i++) {
+          <span class="hljs-comment">// Do nothing</span>
+        }
+        
+        <span class="hljs-selector-tag">performance</span><span class="hljs-selector-class">.mark</span>(<span class="hljs-string">"End"</span>);
+        
+        <span class="hljs-selector-tag">performance</span><span class="hljs-selector-class">.measure</span>(<span class="hljs-string">"Frontend Masters Chrome Devtools"</span>, <span class="hljs-string">"Start"</span>, <span class="hljs-string">"End"</span>);
+        
+        <span class="hljs-selector-tag">performance</span><span class="hljs-selector-class">.getEntriesByType</span>(<span class="hljs-string">"measure"</span>);
+        </code></pre>
+      <p>
+        You can measure so many things using the
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance"
+          >performance API</a
+        >
+      </p>
+      <pre><code class="lang-javascript">
+        <span class="hljs-attribute">const resources</span> = performance.getEntriesByType(<span class="hljs-string">"resource"</span>);
+        <span class="hljs-attribute">const paints</span> = performance.getEntriesByType(<span class="hljs-string">"paint"</span>);
+        <span class="hljs-attribute">const navigations</span> = performance.getEntriesByType(<span class="hljs-string">"navigation"</span>);
+        </code></pre>
+      <h2 id="next-lesson">Next Lesson</h2>
+      <p>
+        Now that we understand Network and page load performance, let&#39;s dive
+        into on page performance in the <a href="/lesson/CPU">next lesson</a>
+      </p>
+    </article>
+    <script src="/js/prism.js"></script>
+    <script src="/js/network-lesson.js"></script>
+  </body>
+</html>
