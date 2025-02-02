@@ -1,0 +1,70 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastering Chrome DevTools</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        margin-top: 150px;
+        background-color: blue;
+        position: absolute;
+        animation: moveRight 2s linear infinite;
+      }
+
+      @keyframes moveRight {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(300px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
+        <li><a href="/lessons">Lessons</a></li>
+        <li><a href="/exercises">Exercises</a></li>
+      </ul>
+    </nav>
+    <article id="main">
+      <h1 id="editing-website-with-chrome-devtools">
+        Editing Website with Chrome DevTools
+      </h1>
+      <h2 id="quick-edits">Quick Edits</h2>
+      <p>(⚡️ indicates a tip or trick!)</p>
+      <ul>
+        <li>Editing CSS</li>
+        <li>Adding CSS Rules</li>
+        <li>Editing HTML</li>
+        <li>⚡️ Scroll into view</li>
+        <li>Console shortcuts</li>
+        <li>Hide and show elements</li>
+        <li>Simulate state</li>
+        <li>Prefers color scheme</li>
+        <li>⚡️ Computed styles</li>
+        <li>⚡️ HTML breakpoints</li>
+        <li>Find event listeners</li>
+        <li>⚡️ Changing color formats</li>
+        <li>⚡️ Import custom theme</li>
+        <li>CSS Specificity</li>
+        <li>CSS Overview</li>
+        <li>Device Toolbar</li>
+        <li>Accessible color picker</li>
+        <li>Accessibility panel</li>
+      </ul>
+      <div class="box"></div>
+      <p>
+        After watching the quick edits video, please move on to the
+        <a href="/exercise/Editing">Exercise</a>
+      </p>
+    </article>
+    <script src="/js/prism.js"></script>
+  </body>
+</html>

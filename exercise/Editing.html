@@ -11,7 +11,7 @@
   <body>
     <nav>
       <ul>
-        <li><a href="/">Introduction to Chrome DevTools v3</a></li>
+        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
         <li><a href="/lessons">Lessons</a></li>
         <li><a href="/exercises">Exercises</a></li>
       </ul>
@@ -23,50 +23,44 @@
         <a href="/lesson/Introduction">Introduction</a> if you forgot how!) and
         complete the following tasks.
       </p>
-      <ol>
+      <ol id="editingList">
         <li>
           Change this list from an ordered list <code>ol</code> to an unordered
           list <code>ul</code>.
         </li>
         <li>
-          Clicking on <a id="link" href="#">this link</a> makes a popup appear.
-          Can you find the JavaScript code that calls the <code>alert</code>?
+          This password field doesn't allow users to paste in their passwords.
+          Can you get around this? Try setting your new password to
+          <code
+            >!@#4$%^&*()_+1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM</code
+          >
         </li>
       </ol>
-      <p>
-        There is a button below. When clicked, it will reveal a
-        <code>blockquote</code>. The <code>blockquote</code> has the following
-        HTML:
-      </p>
-      <pre><code class="lang-html">&lt;blockquote <span class="hljs-built_in">class</span>=<span class="hljs-string">"quote"</span> <span class="hljs-built_in">id</span>=<span class="hljs-string">"quote"</span> style=<span class="hljs-string">"background-color: blue;"</span>&gt;
-  Did you <span class="hljs-keyword">get</span> <span class="hljs-keyword">it</span> right?
-&lt;/blockquote&gt;
-</code></pre>
-      <p>And the following CSS:</p>
-      <pre><code class="lang-css"><span class="hljs-selector-tag">blockquote</span> {
-  <span class="hljs-attribute">background-color</span>: red;
-}
 
-<span class="hljs-selector-class">.quote</span> {
-  <span class="hljs-attribute">background-color</span>: orange;
-}
+      <div class="password-form">
+        <h2>Create New Password</h2>
+        <form>
+          <label for="new-password">New Password:</label>
+          <input
+            type="password"
+            class="disallow-paste"
+            id="new-password"
+            name="new-password"
+            required
+          />
 
-<span class="hljs-selector-id">#quote</span> {
-  <span class="hljs-attribute">background-color</span>: yellow <span class="hljs-meta">!important</span>;
-}
-</code></pre>
-      <ol>
-        <li>Can you guess what background color it will have?</li>
-        <li>
-          Can you &quot;cheat&quot; using the DevTools to be 100% sure before
-          you click?
-        </li>
-      </ol>
-      <button id="button">Click here to find out!</button>
+          <label for="repeat-password">Repeat New Password:</label>
+          <input
+            type="password"
+            class="disallow-paste"
+            id="repeat-password"
+            name="repeat-password"
+            required
+          />
 
-      <blockquote class="quote" id="quote" style="background-color: blue">
-        Did you get it right?
-      </blockquote>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
 
       <p>
         There are a bunch of cards! Can you figure out the border color of the

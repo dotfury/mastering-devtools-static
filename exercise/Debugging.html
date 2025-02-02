@@ -7,22 +7,51 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/prism.css" />
     <link rel="stylesheet" href="/css/editing.css" />
+    <style>
+      #pokemon-list {
+        list-style-type: none;
+        padding: 0;
+      }
+      #pokemon-list li {
+        margin-bottom: 20px;
+      }
+      .pokemon-evolution {
+        display: flex;
+        align-items: center;
+      }
+      .pokemon-evolution img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        image-rendering: pixelated;
+      }
+      .evolution-sequence {
+        display: flex;
+        align-items: center;
+      }
+      .evolution-sequence img {
+        width: 50px;
+        height: 50px;
+        margin: 0 5px;
+      }
+      .evolution-arrow {
+        margin: 0 5px;
+        font-size: 20px;
+      }
+    </style>
   </head>
   <body>
     <nav>
       <ul>
-        <li><a href="/">Introduction to Chrome DevTools v3</a></li>
+        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
         <li><a href="/lessons">Lessons</a></li>
         <li><a href="/exercises">Exercises</a></li>
       </ul>
     </nav>
     <article id="main">
       <h1 id="step-through-debugging">Step Through Debugging</h1>
-      <p>
-        The area below is supposed to be a list of interesting facts about cats!
-        If you look at the HTML you&#39;ll see the following:
-      </p>
-      <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"catfacts"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+      <p>The area below is supposed to be a list of Pokémon evolutions!</p>
+      <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"pokemon-list"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 </code></pre>
       <p>
         And a file in this repo
@@ -36,9 +65,9 @@
         the land.
       </p>
       <h2 id="here-is-a-list-of-facts-about-cats">
-        Here is a list of FACTS about CATS
+        Here is a list of Pokémon evolutions
       </h2>
-      <ul id="catfacts"></ul>
+      <ul id="pokemon-list"></ul>
 
       <h2 id="finished-">Finished?</h2>
       <p>

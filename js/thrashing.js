@@ -1,173 +1,109 @@
-/* Copyright 2016 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. */
+const NUM_BALLS = 200;
+const container = document.getElementById("container");
+const balls = [];
 
-(function (window) {
-  "use strict";
+// Create balls and initial properties
+for (let i = 0; i < NUM_BALLS; i++) {
+  const ball = document.createElement("div");
+  ball.classList.add("ball");
+  container.appendChild(ball);
 
-  var app = {},
-    proto = document.querySelector(".proto"),
-    movers,
-    appBody = document.getElementById("app"),
-    bodySize = document.body.getBoundingClientRect(),
-    ballSize = proto.getBoundingClientRect(),
-    maxHeight = Math.floor(bodySize.height - ballSize.height),
-    maxWidth = 97, // 100vw - width of square (3vw)
-    incrementor = 100,
-    distance = 3,
-    frame,
-    minimum = 10,
-    subtract = document.querySelector(".subtract"),
-    add = document.querySelector(".add");
+  // Random initial positions and velocities
+  const posX = Math.random() * (container.clientWidth - 20);
+  const posY = Math.random() * (container.clientHeight - 20);
+  ball.style.left = posX + "px";
+  ball.style.top = posY + "px";
 
-  app.optimize = false;
-  app.count = minimum;
-  app.enableApp = true;
+  balls.push({
+    element: ball,
+    vx: (Math.random() - 0.5) * 4,
+    vy: (Math.random() - 0.5) * 4,
+    // Store initial positions
+    x: posX,
+    y: posY,
+  });
+}
 
-  app.init = function () {
-    if (movers) {
-      bodySize = document.body.getBoundingClientRect();
-      for (var i = 0; i < movers.length; i++) {
-        appBody.removeChild(movers[i]);
+// Unoptimized animation loop causing layout thrashing
+function moveBalls() {
+  balls.forEach((ball) => {
+    // Read layout properties (causes reflow)
+    let x = ball.element.offsetLeft;
+    let y = ball.element.offsetTop;
+
+    // Update positions
+    x += ball.vx;
+    y += ball.vy;
+
+    // Collision detection with walls
+    if (x <= 0 || x >= container.clientWidth - 20) {
+      ball.vx = -ball.vx;
+    }
+    if (y <= 0 || y >= container.clientHeight - 20) {
+      ball.vy = -ball.vy;
+    }
+
+    // Write layout properties (causes repaint)
+    ball.element.style.left = x + "px";
+    ball.element.style.top = y + "px";
+  });
+}
+
+let animationInterval = setInterval(moveBalls, 16); // ~60fps
+
+// Optimize button click handler
+document
+  .getElementById("optimizeBtn")
+  .addEventListener("click", optimizeAnimation);
+
+function optimizeAnimation() {
+  performance.mark("optimizeClicked");
+
+  clearInterval(animationInterval); // Stop the unoptimized animation
+
+  // Hide the optimize button
+  document.getElementById("optimizeBtn").style.display = "none";
+  document.querySelector("h1").innerText = "Bouncing Balls - Optimized Version";
+
+  // Reset 'left' and 'top', and adjust positions
+  balls.forEach((ball) => {
+    // Reset positioning properties
+    ball.element.style.left = "0px";
+    ball.element.style.top = "0px";
+
+    // Positions are already stored in ball.x and ball.y
+    // No need to adjust them here
+  });
+
+  function optimizedMoveBalls() {
+    balls.forEach((ball) => {
+      // Update positions
+      ball.x += ball.vx;
+      ball.y += ball.vy;
+
+      // Collision detection with walls
+      if (ball.x <= 0) {
+        ball.x = 0;
+        ball.vx = -ball.vx;
+      } else if (ball.x >= container.clientWidth - 20) {
+        ball.x = container.clientWidth - 20;
+        ball.vx = -ball.vx;
       }
-      appBody.appendChild(proto);
-      ballSize = proto.getBoundingClientRect();
-      appBody.removeChild(proto);
-      maxHeight = Math.floor(bodySize.height - ballSize.height);
-    }
-    for (var i = 0; i < app.count; i++) {
-      var m = proto.cloneNode();
-      var top = Math.floor(Math.random() * maxHeight);
-      if (top === maxHeight) {
-        m.classList.add("up");
-      } else {
-        m.classList.add("down");
+
+      if (ball.y <= 0) {
+        ball.y = 0;
+        ball.vy = -ball.vy;
+      } else if (ball.y >= container.clientHeight - 20) {
+        ball.y = container.clientHeight - 20;
+        ball.vy = -ball.vy;
       }
-      m.style.left = i / (app.count / maxWidth) + "vw";
-      m.style.top = top + "px";
-      appBody.appendChild(m);
-    }
-    movers = document.querySelectorAll(".mover");
-  };
 
-  app.update = function (timestamp) {
-    for (var i = 0; i < app.count; i++) {
-      var m = movers[i];
-      if (!app.optimize) {
-        var pos = m.classList.contains("down")
-          ? m.offsetTop + distance
-          : m.offsetTop - distance;
-        if (pos < 0) pos = 0;
-        if (pos > maxHeight) pos = maxHeight;
-        m.style.top = pos + "px";
-        if (m.offsetTop === 0) {
-          m.classList.remove("up");
-          m.classList.add("down");
-        }
-        if (m.offsetTop === maxHeight) {
-          m.classList.remove("down");
-          m.classList.add("up");
-        }
-      } else {
-        var pos = parseInt(m.style.top.slice(0, m.style.top.indexOf("px")));
-        m.classList.contains("down") ? (pos += distance) : (pos -= distance);
-        if (pos < 0) pos = 0;
-        if (pos > maxHeight) pos = maxHeight;
-        m.style.top = pos + "px";
-        if (pos === 0) {
-          m.classList.remove("up");
-          m.classList.add("down");
-        }
-        if (pos === maxHeight) {
-          m.classList.remove("down");
-          m.classList.add("up");
-        }
-      }
-    }
-    frame = window.requestAnimationFrame(app.update);
-  };
+      // Write positions using transform
+      ball.element.style.transform = `translate(${ball.x}px, ${ball.y}px)`;
+    });
 
-  document.querySelector(".stop").addEventListener("click", function (e) {
-    if (app.enableApp) {
-      cancelAnimationFrame(frame);
-      e.target.textContent = "Start";
-      app.enableApp = false;
-    } else {
-      frame = window.requestAnimationFrame(app.update);
-      e.target.textContent = "Stop";
-      app.enableApp = true;
-    }
-  });
-
-  document.querySelector(".optimize").addEventListener("click", function (e) {
-    if (e.target.textContent === "Optimize") {
-      app.optimize = true;
-      e.target.textContent = "Un-Optimize";
-    } else {
-      app.optimize = false;
-      e.target.textContent = "Optimize";
-    }
-  });
-
-  add.addEventListener("click", function (e) {
-    cancelAnimationFrame(frame);
-    app.count += incrementor;
-    subtract.disabled = false;
-    app.init();
-    frame = requestAnimationFrame(app.update);
-  });
-
-  subtract.addEventListener("click", function () {
-    cancelAnimationFrame(frame);
-    app.count -= incrementor;
-    app.init();
-    frame = requestAnimationFrame(app.update);
-    if (app.count === minimum) {
-      subtract.disabled = true;
-    }
-  });
-
-  function debounce(func, wait, immediate) {
-    var timeout;
-    return function () {
-      var context = this,
-        args = arguments;
-      var later = function () {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      };
-      var callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) func.apply(context, args);
-    };
+    requestAnimationFrame(optimizedMoveBalls);
   }
 
-  var onResize = debounce(function () {
-    if (app.enableApp) {
-      cancelAnimationFrame(frame);
-      app.init();
-      frame = requestAnimationFrame(app.update);
-    }
-  }, 500);
-
-  window.addEventListener("resize", onResize);
-
-  add.textContent = "Add " + incrementor;
-  subtract.textContent = "Subtract " + incrementor;
-  appBody.removeChild(proto);
-  proto.classList.remove(".proto");
-  app.init();
-  window.app = app;
-  frame = window.requestAnimationFrame(app.update);
-})(window);
+  requestAnimationFrame(optimizedMoveBalls);
+}

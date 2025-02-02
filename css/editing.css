@@ -1,13 +1,27 @@
-blockquote {
-  background-color: red;
+.password-form {
+  max-width: 300px;
+  margin: 50px auto;
 }
-
-.quote {
-  background-color: orange;
+.password-form label {
+  display: block;
+  margin-bottom: 5px;
 }
-
-#quote {
-  background-color: yellow !important;
+.password-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+.password-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.password-form button:hover {
+  background-color: #45a049;
 }
 
 .card {
