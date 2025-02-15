@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
   <head>
     <script>
       // Simulate a blocking script that takes time to execute
@@ -41,19 +41,35 @@
     </script>
   </head>
   <body aria-hidden="true">
-    <nav>
-      <ul>
-        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
-        <li><a href="/lessons">Lessons</a></li>
-        <li><a href="/exercises">Exercises</a></li>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/" class="nav-link">Introduction to Chrome DevTools v4</a>
+        </li>
+        <li class="nav-item">
+          <a href="/lessons" class="nav-link">Lessons</a>
+        </li>
+        <li class="nav-item">
+          <a href="/exercises" class="nav-link">Exercises</a>
+        </li>
       </ul>
     </nav>
-    <div class="header"></div>
-    <div class="content">
-      <h1>Welcome!</h1>
-      <p>Click the button below to proceed:</p>
-      <div class="button" onclick="alert('Button clicked!')">Click Me</div>
-    </div>
+    <article id="main" class="main-content exercise-content">
+      <h1 class="page-title exercise-title">Exercise 2 - Lighthouse</h1>
+      <div class="exercise-description">
+        <p class="exercise-intro">
+          Let's practice using Lighthouse to audit web performance!
+        </p>
+        <div class="header exercise-header">
+          <h2 class="section-title">Welcome to our slow website!</h2>
+        </div>
+        <div class="content exercise-section">
+          <h1>Welcome!</h1>
+          <p>Click the button below to proceed:</p>
+          <div class="button" onclick="alert('Button clicked!')">Click Me</div>
+        </div>
+      </div>
+    </article>
     <div class="password-form">
       <h2>Create New Password</h2>
       <form>

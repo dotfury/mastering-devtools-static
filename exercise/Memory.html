@@ -18,19 +18,33 @@
     </style>
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
-        <li><a href="/lessons">Lessons</a></li>
-        <li><a href="/exercises">Exercises</a></li>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/" class="nav-link">Introduction to Chrome DevTools v4</a>
+        </li>
+        <li class="nav-item">
+          <a href="/lessons" class="nav-link">Lessons</a>
+        </li>
+        <li class="nav-item">
+          <a href="/exercises" class="nav-link">Exercises</a>
+        </li>
       </ul>
     </nav>
-    <article id="main">
-      <button id="add">Add items to array</button>
-      <div id="container"></div>
+    <article id="main" class="main-content exercise-content">
+      <h1 class="page-title exercise-title">Memory Leak Exercise</h1>
+      <div class="exercise-controls">
+        <button id="add" class="control-button">Add items to array</button>
+      </div>
+      <div id="container" class="memory-container"></div>
 
-      <h2 id="finished-">Finished?</h2>
-      <p>Head back to the <a href="/lesson/CPU">CPU Lesson</a></p>
+      <div class="exercise-footer">
+        <h2 id="finished-" class="section-title">Finished?</h2>
+        <p class="navigation-text">
+          Head back to the
+          <a href="/lesson/CPU" class="lesson-link">CPU Lesson</a>
+        </p>
+      </div>
     </article>
     <script src="/js/prism.js"></script>
     <script src="/js/memory.js"></script>

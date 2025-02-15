@@ -9,84 +9,94 @@
     <link rel="stylesheet" href="/css/editing.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
-        <li><a href="/lessons">Lessons</a></li>
-        <li><a href="/exercises">Exercises</a></li>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/" class="nav-link">Introduction to Chrome DevTools v4</a>
+        </li>
+        <li class="nav-item">
+          <a href="/lessons" class="nav-link">Lessons</a>
+        </li>
+        <li class="nav-item">
+          <a href="/exercises" class="nav-link">Exercises</a>
+        </li>
       </ul>
     </nav>
-    <article id="main">
-      <h1 id="exercise-1-quick-edits">Exercise 1 - Quick Edits</h1>
-      <p>
-        Let&#39;s take 15 minutes, fire up the DevTools (refer back to the
-        <a href="/lesson/Introduction">Introduction</a> if you forgot how!) and
-        complete the following tasks.
-      </p>
-      <ol id="editingList">
-        <li>
-          Change this list from an ordered list <code>ol</code> to an unordered
-          list <code>ul</code>.
-        </li>
-        <li>
-          This password field doesn't allow users to paste in their passwords.
-          Can you get around this? Try setting your new password to
-          <code
-            >!@#4$%^&*()_+1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM</code
-          >
-        </li>
-      </ol>
+    <article id="main" class="main-content exercise-content">
+      <h1 id="exercise-1-quick-edits" class="page-title exercise-title">
+        Exercise 1 - Quick Edits
+      </h1>
+      <div class="exercise-description">
+        <p class="exercise-intro">
+          Let&#39;s take 15 minutes, fire up the DevTools (refer back to the
+          <a href="/lesson/Introduction" class="lesson-link">Introduction</a> if
+          you forgot how!) and complete the following tasks.
+        </p>
+        <ol id="editingList" class="task-list">
+          <li class="task-item">
+            Change this list from an ordered list <code>ol</code> to an
+            unordered list <code>ul</code>.
+          </li>
+          <li class="task-item">
+            This password field doesn't allow users to paste in their passwords.
+            Can you get around this? Try setting your new password to
+            <code class="task-code"
+              >!@#4$%^&*()_+1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM</code
+            >
+          </li>
+        </ol>
 
-      <div class="password-form">
-        <h2>Create New Password</h2>
-        <form>
-          <label for="new-password">New Password:</label>
-          <input
-            type="password"
-            class="disallow-paste"
-            id="new-password"
-            name="new-password"
-            required
-          />
+        <div class="password-form exercise-section">
+          <h2 class="section-title">Create New Password</h2>
+          <form class="exercise-form">
+            <label for="new-password">New Password:</label>
+            <input
+              type="password"
+              class="disallow-paste form-input"
+              id="new-password"
+              name="new-password"
+              required
+            />
 
-          <label for="repeat-password">Repeat New Password:</label>
-          <input
-            type="password"
-            class="disallow-paste"
-            id="repeat-password"
-            name="repeat-password"
-            required
-          />
+            <label for="repeat-password">Repeat New Password:</label>
+            <input
+              type="password"
+              class="disallow-paste"
+              id="repeat-password"
+              name="repeat-password"
+              required
+            />
 
-          <button type="submit">Submit</button>
-        </form>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <p>
+          There are a bunch of cards! Can you figure out the border color of the
+          one with id <strong>12345678</strong>? Can you do it in a way that
+          would work if there were 1000 cards on the page?
+        </p>
+        <div id="513425" class="card">Apple</div>
+        <div id="873234" class="card">Bird</div>
+        <div id="485073" class="card">Car</div>
+        <div id="182370" class="card">Dove</div>
+        <div id="438975" class="card">Elephant</div>
+        <div id="127369" class="card">Fire</div>
+        <div id="234709" class="card">Goat</div>
+        <div id="983745" class="card">Hello</div>
+        <div id="320283" class="card">Igloo</div>
+        <div id="089734" class="card">Jon</div>
+        <div id="283740" class="card">Kuperman 😂</div>
+        <div id="346708" class="card">Lion</div>
+        <div id="12345678" class="card">Mars</div>
+        <div id="210387" class="card">Nope</div>
+
+        <h2 id="back-to-the-lesson">Back to the lesson</h2>
+        <p>
+          Finished? Let&#39;s head back to the
+          <a href="/lesson/Editing">Lesson</a>
+        </p>
       </div>
-
-      <p>
-        There are a bunch of cards! Can you figure out the border color of the
-        one with id <strong>12345678</strong>? Can you do it in a way that would
-        work if there were 1000 cards on the page?
-      </p>
-      <div id="513425" class="card">Apple</div>
-      <div id="873234" class="card">Bird</div>
-      <div id="485073" class="card">Car</div>
-      <div id="182370" class="card">Dove</div>
-      <div id="438975" class="card">Elephant</div>
-      <div id="127369" class="card">Fire</div>
-      <div id="234709" class="card">Goat</div>
-      <div id="983745" class="card">Hello</div>
-      <div id="320283" class="card">Igloo</div>
-      <div id="089734" class="card">Jon</div>
-      <div id="283740" class="card">Kuperman 😂</div>
-      <div id="346708" class="card">Lion</div>
-      <div id="12345678" class="card">Mars</div>
-      <div id="210387" class="card">Nope</div>
-
-      <h2 id="back-to-the-lesson">Back to the lesson</h2>
-      <p>
-        Finished? Let&#39;s head back to the
-        <a href="/lesson/Editing">Lesson</a>
-      </p>
     </article>
     <script src="/js/prism.js"></script>
     <script src="/js/editing.js"></script>

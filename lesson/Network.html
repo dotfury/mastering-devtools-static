@@ -8,46 +8,68 @@
     <link rel="stylesheet" href="/css/prism.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
-        <li><a href="/lessons">Lessons</a></li>
-        <li><a href="/exercises">Exercises</a></li>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/" class="nav-link">Introduction to Chrome DevTools v4</a>
+        </li>
+        <li class="nav-item">
+          <a href="/lessons" class="nav-link">Lessons</a>
+        </li>
+        <li class="nav-item">
+          <a href="/exercises" class="nav-link">Exercises</a>
+        </li>
       </ul>
     </nav>
-    <article id="main">
-      <h1 id="network-performance">Network Performance</h1>
-      <h3 id="in-this-lesson-we-ll-learn">In this lesson we&#39;ll learn</h3>
-      <ul>
-        <li>
-          <a href="#interesting-facts-about-page-load-time"
+    <article id="main" class="main-content lesson-content">
+      <h1 id="network-performance" class="page-title lesson-title">
+        Network Performance
+      </h1>
+      <h3 id="in-this-lesson-we-ll-learn" class="lesson-overview">
+        In this lesson we&#39;ll learn
+      </h3>
+      <ul class="lesson-topics">
+        <li class="lesson-topic">
+          <a href="#interesting-facts-about-page-load-time" class="topic-link"
             >Page load market research</a
           >
         </li>
-        <li><a href="#the-network-waterfall">The Network waterfall</a></li>
-        <li>
-          <a href="#network-performance-isn-t-everything-">JS Parse cost</a>
+        <li class="lesson-topic">
+          <a href="#the-network-waterfall" class="topic-link"
+            >The Network waterfall</a
+          >
+        </li>
+        <li class="lesson-topic">
+          <a href="#network-performance-isn-t-everything-" class="topic-link"
+            >JS Parse cost</a
+          >
         </li>
       </ul>
-      <h2 id="interesting-facts-about-page-load-time">
+      <h2 id="interesting-facts-about-page-load-time" class="section-title">
         Interesting facts about page load time
       </h2>
-      <blockquote>
-        <p>
+      <blockquote class="research-quote">
+        <p class="quote-text">
           Walmart and Amazon both observed a 1% increase in earnings for every
           100 milliseconds of improved webpage speed.
         </p>
-        <p>
+        <p class="quote-text">
           Yahoo saw a 9% increase in traffic to every 400 milliseconds of
           webpage speed improvement.
         </p>
-        <p>
+        <p class="quote-text">
           Google loses 20% of their traffic for every additional 100
           milliseconds it takes for a page to load.
         </p>
       </blockquote>
-      <p><img src="/img/google-marketing.png" alt="Google Marketing" /></p>
-      <p>In this lesson, we&#39;ll learn about</p>
+      <p class="lesson-image-container">
+        <img
+          src="/img/google-marketing.png"
+          alt="Google Marketing"
+          class="lesson-image"
+        />
+      </p>
+      <p class="lesson-intro">In this lesson, we&#39;ll learn about</p>
       <ul>
         <li>Network terminology</li>
         <li>Filtering requests</li>

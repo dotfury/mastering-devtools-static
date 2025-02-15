@@ -7,45 +7,56 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
-        <li><a href="/lessons">Lessons</a></li>
-        <li><a href="/exercises">Exercises</a></li>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/" class="nav-link">Introduction to Chrome DevTools v4</a>
+        </li>
+        <li class="nav-item">
+          <a href="/lessons" class="nav-link">Lessons</a>
+        </li>
+        <li class="nav-item">
+          <a href="/exercises" class="nav-link">Exercises</a>
+        </li>
       </ul>
     </nav>
-    <article id="main">
-      <h1 id="step-through-debugging">Step Through Debugging</h1>
-      <p>
+    <article id="main" class="main-content lesson-content">
+      <h1 id="step-through-debugging" class="page-title lesson-title">
+        Step Through Debugging
+      </h1>
+      <p class="lesson-intro">
         If you&#39;ve programmed in another language, step through debugging may
         already be familiar to you! But we&#39;ll cover it here for the folks
         that haven&#39;t seen it before.
       </p>
-      <p>
+      <p class="lesson-text">
         The basic idea is that you can pick a line in your code and highlight
         it. Whenever that line is about to be executed, the browser will instead
         <strong>pause</strong> the execution of the app. Leaving you free to
         poke around in it&#39;s current state for as long as you&#39;d like.
       </p>
-      <p>
-        Think about breakpoints like a ultra powerful <code>console.log</code>!
-        Instead of just printing out a single expression, you can spend
-        unlimited time logging unlimited expressions in a stateless environment.
+      <p class="lesson-text">
+        Think about breakpoints like a ultra powerful
+        <code class="inline-code">console.log</code>! Instead of just printing
+        out a single expression, you can spend unlimited time logging unlimited
+        expressions in a stateless environment.
       </p>
-      <p>In this lesson we&#39;ll learn how to:</p>
-      <ul>
-        <li>Set and activate breakpoints</li>
-        <li>Use the <code>debugger</code> keyword</li>
-        <li>Walk the call stack</li>
-        <li>Set conditional breakpoints</li>
-        <li>Set XHR breakpoints</li>
+      <p class="lesson-intro">In this lesson we&#39;ll learn how to:</p>
+      <ul class="feature-list">
+        <li class="feature-item">Set and activate breakpoints</li>
+        <li class="feature-item">
+          Use the <code class="inline-code">debugger</code> keyword
+        </li>
+        <li class="feature-item">Walk the call stack</li>
+        <li class="feature-item">Set conditional breakpoints</li>
+        <li class="feature-item">Set XHR breakpoints</li>
       </ul>
-      <p>
+      <p class="navigation-text">
         After watching the Step Through Debugging video, please move on to the
-        <a href="/exercise/Debugging">Exercise</a>
+        <a href="/exercise/Debugging" class="exercise-link">Exercise</a>
       </p>
-      <h2 id="next-lesson">Next Lesson</h2>
-      <p>
+      <h2 id="next-lesson" class="section-title">Next Lesson</h2>
+      <p class="lesson-text">
         How confident are you in your apps Network Performance? Do you know the
         # of requests? How big your bundles are? What your app looks like while
         it&#39;s loading? Let&#39;s learn all this and more in the

@@ -8,54 +8,75 @@
     <link rel="stylesheet" href="/css/prism.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
-        <li><a href="/lessons">Lessons</a></li>
-        <li><a href="/exercises">Exercises</a></li>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/" class="nav-link">Introduction to Chrome DevTools v4</a>
+        </li>
+        <li class="nav-item">
+          <a href="/lessons" class="nav-link">Lessons</a>
+        </li>
+        <li class="nav-item">
+          <a href="/exercises" class="nav-link">Exercises</a>
+        </li>
       </ul>
     </nav>
-    <article id="main">
-      <h1 id="on-page-performance">On Page Performance</h1>
-      <p>In this lesson we&#39;ll learn:</p>
-      <ul>
-        <li>How to read a flamegraph</li>
-        <li>Find page jank</li>
-        <li>Paint rectangles</li>
-        <li>Check your applications FPS</li>
-        <li>Understand scripting, rendering and painting</li>
-        <li>Find slow functions</li>
-        <li>Web vitals</li>
+    <article id="main" class="main-content lesson-content">
+      <h1 id="on-page-performance" class="page-title lesson-title">
+        On Page Performance
+      </h1>
+      <p class="lesson-intro">In this lesson we&#39;ll learn:</p>
+      <ul class="feature-list">
+        <li class="feature-item">How to read a flamegraph</li>
+        <li class="feature-item">Find page jank</li>
+        <li class="feature-item">Paint rectangles</li>
+        <li class="feature-item">Check your applications FPS</li>
+        <li class="feature-item">
+          Understand scripting, rendering and painting
+        </li>
+        <li class="feature-item">Find slow functions</li>
+        <li class="feature-item">Web vitals</li>
       </ul>
-      <h2 id="rail">Rail</h2>
-      <p><img src="/img/rail.png" alt="Chrome&#39;s RAIL model" /></p>
-      <p>
-        <strong>0 to 16 ms</strong> Users are exceptionally good at tracking
-        motion, and they dislike it when animations aren&#39;t smooth. They
-        perceive animations as smooth so long as 60 new frames are rendered
-        every second. That&#39;s 16 ms per frame, including the time it takes
-        for the browser to paint the new frame to the screen, leaving an app
-        about 10 ms to produce a frame.
+      <h2 id="rail" class="section-title">Rail</h2>
+      <p class="lesson-image-container">
+        <img
+          src="/img/rail.png"
+          alt="Chrome&#39;s RAIL model"
+          class="lesson-image"
+        />
       </p>
-      <p>
-        <strong>0 to 100 ms</strong> Respond to user actions within this time
-        window and users feel like the result is immediate. Any longer, and the
-        connection between action and reaction is broken.
-      </p>
-      <p>
-        <strong>100 to 1000 ms</strong> Within this window, things feel part of
-        a natural and continuous progression of tasks. For most users on the
-        web, loading pages or changing views represents a task.
-      </p>
-      <p>
-        <strong>1000 ms or more</strong> Beyond 1000 milliseconds (1 second),
-        users lose focus on the task they are performing.
-      </p>
-      <p>
-        <strong>10000 ms or more</strong> Beyond 10000 milliseconds (10
-        seconds), users are frustrated and are likely to abandon tasks. They may
-        or may not come back later.
-      </p>
+      <div class="timing-section">
+        <p class="timing-item">
+          <strong class="timing-range">0 to 16 ms</strong> Users are
+          exceptionally good at tracking motion, and they dislike it when
+          animations aren&#39;t smooth. They perceive animations as smooth so
+          long as 60 new frames are rendered every second. That&#39;s 16 ms per
+          frame, including the time it takes for the browser to paint the new
+          frame to the screen, leaving an app about 10 ms to produce a frame.
+        </p>
+        <p class="timing-item">
+          <strong class="timing-range">0 to 100 ms</strong> Respond to user
+          actions within this time window and users feel like the result is
+          immediate. Any longer, and the connection between action and reaction
+          is broken.
+        </p>
+        <p class="timing-item">
+          <strong class="timing-range">100 to 1000 ms</strong> Within this
+          window, things feel part of a natural and continuous progression of
+          tasks. For most users on the web, loading pages or changing views
+          represents a task.
+        </p>
+        <p class="timing-item">
+          <strong class="timing-range">1000 ms or more</strong> Beyond 1000
+          milliseconds (1 second), users lose focus on the task they are
+          performing.
+        </p>
+        <p class="timing-item">
+          <strong class="timing-range">10000 ms or more</strong> Beyond 10000
+          milliseconds (10 seconds), users are frustrated and are likely to
+          abandon tasks. They may or may not come back later.
+        </p>
+      </div>
       <h2 id="what-is-page-jank-">What is page jank?</h2>
       <blockquote>
         <p>
@@ -66,7 +87,7 @@
       <h2 id="understanding-60-fps">Understanding 60 FPS</h2>
       <p>
         Most devices today refresh their screens 60 times a second. The browser
-        needs to match the device’s refresh rate and put up 1 new picture, or
+        needs to match the device's refresh rate and put up 1 new picture, or
         frame, for each of those screen refreshes.
       </p>
       <p>

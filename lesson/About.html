@@ -7,99 +7,109 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
-        <li><a href="/lessons">Lessons</a></li>
-        <li><a href="/exercises">Exercises</a></li>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/" class="nav-link">Introduction to Chrome DevTools v4</a>
+        </li>
+        <li class="nav-item">
+          <a href="/lessons" class="nav-link">Lessons</a>
+        </li>
+        <li class="nav-item">
+          <a href="/exercises" class="nav-link">Exercises</a>
+        </li>
       </ul>
     </nav>
-    <article id="main">
-      <h1 id="lesson-2-what-can-devtools-do-">
+    <article id="main" class="main-content lesson-content">
+      <h1 id="lesson-2-what-can-devtools-do-" class="page-title lesson-title">
         Lesson - What can DevTools do?
       </h1>
-      <p>
+      <p class="lesson-intro">
         Chrome DevTools can do so many things. Sometimes it&#39;s more important
         to know what a tool can do than knowing exactly how to do it!
       </p>
-      <div class="note">
+      <div class="note info-note">
         💡 Note: Chrome extensions often mess with the DevTools data, leading to
         inaccurate reporting! If you&#39;re going to run any important audits,
         make sure you have all of your extensions disabled
         <strong>or</strong> use an Incognito tab!
       </div>
 
-      <h2 id="a-walk-through-the-panels">A walk through the panels</h2>
-      <ol>
-        <li>
-          <strong>Elements</strong> 🧪
-          <ul>
-            <li>View HTML and CSS</li>
-            <li>Add/Change classes and IDs</li>
-            <li>Update Styles</li>
-            <li>Smart search</li>
+      <h2 id="a-walk-through-the-panels" class="section-title">
+        A walk through the panels
+      </h2>
+      <ol class="feature-list">
+        <li class="feature-item">
+          <strong class="feature-name">Elements</strong> 🧪
+          <ul class="feature-details">
+            <li class="feature-detail">View HTML and CSS</li>
+            <li class="feature-detail">Add/Change classes and IDs</li>
+            <li class="feature-detail">Update Styles</li>
+            <li class="feature-detail">Smart search</li>
           </ul>
         </li>
-        <li>
-          <strong>Network</strong> 🌐
-          <ul>
-            <li>View all files sent from server</li>
-            <li>Measure page load performance</li>
-            <li>Watch your site load in real time</li>
-            <li>Inspect request / response data</li>
+        <li class="feature-item">
+          <strong class="feature-name">Network</strong> 🌐
+          <ul class="feature-details">
+            <li class="feature-detail">View all files sent from server</li>
+            <li class="feature-detail">Measure page load performance</li>
+            <li class="feature-detail">Watch your site load in real time</li>
+            <li class="feature-detail">Inspect request / response data</li>
           </ul>
         </li>
-        <li>
-          <strong>Performance</strong> 🙀
-          <ul>
-            <li>The scary one!</li>
-            <li>Record CPU and Memory usage</li>
-            <li>Inspect threads</li>
-            <li>Spot page jank</li>
+        <li class="feature-item">
+          <strong class="feature-name">Performance</strong> 🙀
+          <ul class="feature-details">
+            <li class="feature-detail">The scary one!</li>
+            <li class="feature-detail">Record CPU and Memory usage</li>
+            <li class="feature-detail">Inspect threads</li>
+            <li class="feature-detail">Spot page jank</li>
           </ul>
         </li>
-        <li>
-          <strong>Console</strong> 🎮
-          <ul>
-            <li>The friendly one!</li>
-            <li>JavaScript REPL</li>
-            <li>Interact with the DOM</li>
+        <li class="feature-item">
+          <strong class="feature-name">Console</strong> 🎮
+          <ul class="feature-details">
+            <li class="feature-detail">The friendly one!</li>
+            <li class="feature-detail">JavaScript REPL</li>
+            <li class="feature-detail">Interact with the DOM</li>
           </ul>
         </li>
-        <li>
-          <strong>Sources</strong> 📘
-          <ul>
-            <li>A full IDE</li>
-            <li>Step through debugger</li>
+        <li class="feature-item">
+          <strong class="feature-name">Sources</strong> 📘
+          <ul class="feature-details">
+            <li class="feature-detail">A full IDE</li>
+            <li class="feature-detail">Step through debugger</li>
           </ul>
         </li>
-        <li>
-          <strong>Application</strong> 💼
-          <ul>
-            <li>Application storage</li>
-            <li>Check PWA features</li>
-            <li>Clear cache</li>
+        <li class="feature-item">
+          <strong class="feature-name">Application</strong> 💼
+          <ul class="feature-details">
+            <li class="feature-detail">Application storage</li>
+            <li class="feature-detail">Check PWA features</li>
+            <li class="feature-detail">Clear cache</li>
           </ul>
         </li>
-        <li>
-          <strong>Memory</strong> 🤔
-          <ul>
-            <li>Generate memory snapshots</li>
-            <li>Find and fix memory leaks</li>
+        <li class="feature-item">
+          <strong class="feature-name">Memory</strong> 🤔
+          <ul class="feature-details">
+            <li class="feature-detail">Generate memory snapshots</li>
+            <li class="feature-detail">Find and fix memory leaks</li>
           </ul>
         </li>
-        <li>
-          <strong>Lighthouse</strong> 🚢
-          <ul>
-            <li>Full website audit</li>
-            <li>Check Performance, SEO, Accessibility</li>
+        <li class="feature-item">
+          <strong class="feature-name">Lighthouse</strong> 🚢
+          <ul class="feature-details">
+            <li class="feature-detail">Full website audit</li>
+            <li class="feature-detail">
+              Check Performance, SEO, Accessibility
+            </li>
           </ul>
         </li>
-        <li>
-          <strong>Also</strong> ➕
-          <ul>
-            <li>Emulate devices</li>
-            <li>Simulate network conditions</li>
+        <li class="feature-item">
+          <strong class="feature-name">Also</strong> ➕
+          <ul class="feature-details">
+            <li class="feature-detail">Emulate devices</li>
+            <li class="feature-detail">Simulate network conditions</li>
           </ul>
         </li>
       </ol>

@@ -9,20 +9,30 @@
     <link rel="stylesheet" href="/css/thrashing.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
-        <li><a href="/lessons">Lessons</a></li>
-        <li><a href="/exercises">Exercises</a></li>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/" class="nav-link">Introduction to Chrome DevTools v4</a>
+        </li>
+        <li class="nav-item">
+          <a href="/lessons" class="nav-link">Lessons</a>
+        </li>
+        <li class="nav-item">
+          <a href="/exercises" class="nav-link">Exercises</a>
+        </li>
       </ul>
     </nav>
-    <article id="main">
-      <h1>Bouncing Balls - Unoptimized Version</h1>
-      <button id="optimizeBtn">Optimize</button>
-      <div id="container"></div>
+    <article id="main" class="main-content exercise-content">
+      <h1 class="page-title exercise-title">
+        Bouncing Balls - Unoptimized Version
+      </h1>
+      <div class="exercise-controls">
+        <button id="optimizeBtn" class="control-button">Optimize</button>
+      </div>
+      <div id="container" class="animation-container"></div>
 
-      <div id="explainer">
-        <p>
+      <div id="explainer" class="exercise-explanation">
+        <p class="explanation-text">
           In this exercise, we have an animation of multiple balls bouncing
           within a container. Initially, the animation is slow and janky because
           it repeatedly reads and writes layout properties like offsetLeft,
@@ -30,8 +40,8 @@
           frequent layout recalculations, known as layout thrashing, which
           burdens the browser's main thread and degrades performance.
         </p>
-        <p>
-          When the “Optimize” button is clicked, the animation is refactored to
+        <p class="explanation-text">
+          When the "Optimize" button is clicked, the animation is refactored to
           store positions in JavaScript variables and update the ball positions
           using CSS transform: translate(), instead of left and top. This
           approach avoids triggering layout recalculations because transforms
@@ -40,7 +50,7 @@
           animation updates with the browser's rendering cycle for better
           efficiency.
         </p>
-        <p>
+        <p class="explanation-text">
           The key takeaway is that frequent DOM reads and writes can negatively
           impact performance. By minimizing layout-dependent operations and
           leveraging CSS transforms and requestAnimationFrame(), we create

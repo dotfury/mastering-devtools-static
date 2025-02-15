@@ -7,43 +7,62 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Introduction to Chrome DevTools v4</a></li>
-        <li><a href="/lessons">Lessons</a></li>
-        <li><a href="/exercises">Exercises</a></li>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/" class="nav-link">Introduction to Chrome DevTools v4</a>
+        </li>
+        <li class="nav-item">
+          <a href="/lessons" class="nav-link">Lessons</a>
+        </li>
+        <li class="nav-item">
+          <a href="/exercises" class="nav-link">Exercises</a>
+        </li>
       </ul>
     </nav>
-    <article id="main">
-      <h1 id="memory-leaks">Memory Leaks</h1>
-      <h2 id="garbage-collection-">Garbage collection 🚛</h2>
-      <p>
+    <article id="main" class="main-content lesson-content">
+      <h1 id="memory-leaks" class="page-title lesson-title">Memory Leaks</h1>
+      <h2 id="garbage-collection-" class="section-title">
+        Garbage collection 🚛
+      </h2>
+      <p class="lesson-intro">
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management#garbage_collection"
+          class="external-link"
           >https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management#garbage_collection</a
         >
       </p>
-      <h2 id="chrome-task-manager">Chrome Task Manager</h2>
-      <p>You have 3 great tools for finding memory leaks in Chrome:</p>
-      <ol>
-        <li>Chrome Task Manager</li>
-        <li>Performance Panel</li>
-        <li>Memory Panel</li>
+      <h2 id="chrome-task-manager" class="section-title">
+        Chrome Task Manager
+      </h2>
+      <p class="lesson-intro">
+        You have 3 great tools for finding memory leaks in Chrome:
+      </p>
+      <ol class="tool-list">
+        <li class="tool-item">Chrome Task Manager</li>
+        <li class="tool-item">Performance Panel</li>
+        <li class="tool-item">Memory Panel</li>
       </ol>
-      <h3 id="memory-leak-1-too-many-dom-nodes">
+      <h3 id="memory-leak-1-too-many-dom-nodes" class="subsection-title">
         Memory Leak #1 - Too many DOM nodes
       </h3>
-      <button id="grow">Create 1k divs!</button>
+      <div class="demo-controls">
+        <button id="grow" class="demo-button">Create 1k divs!</button>
+      </div>
 
-      <h3 id="memory-leak-2-detached-dom-nodes">
+      <h3 id="memory-leak-2-detached-dom-nodes" class="subsection-title">
         Memory Leak #2 - Detached DOM nodes
       </h3>
-      <button id="create">Create 1k detached divs!</button>
+      <div class="demo-controls">
+        <button id="create" class="demo-button">
+          Create 1k detached divs!
+        </button>
+      </div>
 
-      <h2 id="next-lesson">Next Lesson</h2>
-      <p>
+      <h2 id="next-lesson" class="section-title">Next Lesson</h2>
+      <p class="navigation-text">
         After finishing the video on Memory Leaks, move on to the
-        <a href="/lesson/Audit">next Lesson</a>
+        <a href="/lesson/Audit" class="lesson-link">next Lesson</a>
       </p>
     </article>
     <script src="/js/memory-lesson.js"></script>
