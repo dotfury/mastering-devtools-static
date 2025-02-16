@@ -7,7 +7,8 @@ setInterval(() => {
   }
 
   function function2(foo) {
-    if (foo === "foo") {
+    let randomNumber = Math.random();
+    if (randomNumber > 0.5) {
       function3();
     } else {
       function4();
@@ -21,4 +22,4 @@ setInterval(() => {
   function function4() {
     console.log("Hello from function 4");
   }
-}, 10000);
+}, 500);
