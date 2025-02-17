@@ -24,6 +24,12 @@ body {
   padding: 0;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Modern navigation */
 .main-nav {
   background: var(--background-dark);
