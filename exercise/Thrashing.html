@@ -33,6 +33,27 @@
 
       <div id="explainer" class="exercise-explanation">
         <p class="explanation-text">
+          The goal here isn't necessarily to fix the animation. Your first goal
+          is to profile the unoptimized version and understand how to:
+        </p>
+        <ul class="explanation-list">
+          <li class="explanation-item">Confirm there are dropped frames.</li>
+          <li class="explanation-item">
+            Identify the function or callstack responsible.
+          </li>
+          <li class="explanation-item">
+            Consider if a `requestAnimationFrame` or CSS Transform could help?
+          </li>
+          <li class="explanation-item">
+            Only if you'd like, try to fix the unoptimized version without
+            looking at the optimized version!.
+          </li>
+          <li class="explanation-item">
+            When you are ready, click the optimize button and run the
+            performance profile again.
+          </li>
+        </ul>
+        <p class="explanation-text">
           In this exercise, we have an animation of multiple balls bouncing
           within a container. Initially, the animation is slow and janky because
           it repeatedly reads and writes layout properties like offsetLeft,
