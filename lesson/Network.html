@@ -159,59 +159,11 @@
         Measuring real user performance
       </h2>
       <p>Why measure performance from real users?</p>
-      <h3 id="first-we-had-gettime">First we had getTime</h3>
-      <pre><code class="lang-javascript">
-        const start = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();
-        
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100000</span>; i++) {
-          <span class="hljs-comment">// Do nothing</span>
-        }
-        
-        const <span class="hljs-keyword">end</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();
-        
-        console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">end</span> - start);
-        </code></pre>
-      <h3 id="then-we-got-console-time">Then we got console.time</h3>
-      <pre><code class="lang-javascript">
-        <span class="hljs-built_in">console</span>.time(<span class="hljs-string">"doNothing"</span>);
-        
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100000</span>; i++) {
-          <span class="hljs-comment">// Do nothing</span>
-        }
-        
-        <span class="hljs-built_in">console</span>.timeEnd(<span class="hljs-string">"doNothing"</span>);
-        </code></pre>
-      <h3 id="now-we-have-performance-mark-and-measure-">
-        Now we have performance mark and measure!
-      </h3>
-      <pre><code class="lang-javascript">
-        <span class="hljs-selector-tag">performance</span><span class="hljs-selector-class">.mark</span>(<span class="hljs-string">"Start"</span>);
-        
-        <span class="hljs-selector-tag">for</span> (let i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000000000</span>; i++) {
-          <span class="hljs-comment">// Do nothing</span>
-        }
-        
-        <span class="hljs-selector-tag">performance</span><span class="hljs-selector-class">.mark</span>(<span class="hljs-string">"End"</span>);
-        
-        <span class="hljs-selector-tag">performance</span><span class="hljs-selector-class">.measure</span>(<span class="hljs-string">"Frontend Masters Chrome Devtools"</span>, <span class="hljs-string">"Start"</span>, <span class="hljs-string">"End"</span>);
-        
-        <span class="hljs-selector-tag">performance</span><span class="hljs-selector-class">.getEntriesByType</span>(<span class="hljs-string">"measure"</span>);
-        </code></pre>
       <p>
         You can measure so many things using the
         <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance"
           >performance API</a
         >
-      </p>
-      <pre><code class="lang-javascript">
-        <span class="hljs-attribute">const resources</span> = performance.getEntriesByType(<span class="hljs-string">"resource"</span>);
-        <span class="hljs-attribute">const paints</span> = performance.getEntriesByType(<span class="hljs-string">"paint"</span>);
-        <span class="hljs-attribute">const navigations</span> = performance.getEntriesByType(<span class="hljs-string">"navigation"</span>);
-        </code></pre>
-      <h2 id="next-lesson">Next Lesson</h2>
-      <p>
-        Now that we understand Network and page load performance, let&#39;s dive
-        into on page performance in the <a href="/lesson/CPU">next lesson</a>
       </p>
     </article>
     <script src="/js/prism.js"></script>

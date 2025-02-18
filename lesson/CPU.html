@@ -37,64 +37,6 @@
         <li class="feature-item">Find slow functions</li>
         <li class="feature-item">Web vitals</li>
       </ul>
-      <h2 id="rail" class="section-title">Rail</h2>
-      <p class="lesson-image-container">
-        <img
-          src="/img/rail.png"
-          alt="Chrome&#39;s RAIL model"
-          class="lesson-image"
-        />
-      </p>
-      <div class="timing-section">
-        <p class="timing-item">
-          <strong class="timing-range">0 to 16 ms</strong> Users are
-          exceptionally good at tracking motion, and they dislike it when
-          animations aren&#39;t smooth. They perceive animations as smooth so
-          long as 60 new frames are rendered every second. That&#39;s 16 ms per
-          frame, including the time it takes for the browser to paint the new
-          frame to the screen, leaving an app about 10 ms to produce a frame.
-        </p>
-        <p class="timing-item">
-          <strong class="timing-range">0 to 100 ms</strong> Respond to user
-          actions within this time window and users feel like the result is
-          immediate. Any longer, and the connection between action and reaction
-          is broken.
-        </p>
-        <p class="timing-item">
-          <strong class="timing-range">100 to 1000 ms</strong> Within this
-          window, things feel part of a natural and continuous progression of
-          tasks. For most users on the web, loading pages or changing views
-          represents a task.
-        </p>
-        <p class="timing-item">
-          <strong class="timing-range">1000 ms or more</strong> Beyond 1000
-          milliseconds (1 second), users lose focus on the task they are
-          performing.
-        </p>
-        <p class="timing-item">
-          <strong class="timing-range">10000 ms or more</strong> Beyond 10000
-          milliseconds (10 seconds), users are frustrated and are likely to
-          abandon tasks. They may or may not come back later.
-        </p>
-      </div>
-      <h2 id="what-is-page-jank-">What is page jank?</h2>
-      <blockquote>
-        <p>
-          Jank is any stuttering, juddering or just plain halting that users see
-          when a site or app isn&#39;t keeping up with the refresh rate.
-        </p>
-      </blockquote>
-      <h2 id="understanding-60-fps">Understanding 60 FPS</h2>
-      <p>
-        Most devices today refresh their screens 60 times a second. The browser
-        needs to match the device's refresh rate and put up 1 new picture, or
-        frame, for each of those screen refreshes.
-      </p>
-      <p>
-        Each of those frames has a budget of just over 16ms (1 second / 60 =
-        16.66ms). In reality, however, the browser has housekeeping work to do,
-        so all of your work needs to be completed inside 10ms.
-      </p>
       <h2 id="pragmatic-approaches">Pragmatic Approaches</h2>
       <ul>
         <li>Use requestAnimationFrame</li>
@@ -169,12 +111,13 @@ onmessage = <span class="hljs-function"><span class="hljs-keyword">function</spa
       <p>Try killing the current process and running</p>
       <pre><code class="lang-bash"><span class="hljs-keyword">node</span> <span class="hljs-title">--inspect</span> server/server.js
 </code></pre>
-      <h2 id="next-lesson">Next Lesson</h2>
+      <h2 id="next-lesson">Exercise</h2>
       <p>
-        We&#39;ve covered a lot about CPU performance, now let&#39;s take a look
-        at Memory management in the <a href="/lesson/Memory">next Lesson</a>
+        Now try to play around with the Performance tab yourself on
+        <a href="/exercise/Thrashing">this page</a>.
       </p>
     </article>
     <script src="/js/prism.js"></script>
+    <script src="/js/cpu-lesson.js"></script>
   </body>
 </html>
