@@ -1,6 +1,6 @@
-# Mastering Chrome DevTools
-
-The static site behind my Frontend Masters workshop
+# Mastering Chrome DevTools, v4
+This is a companion repository for the [Mastering Chrome DevTools, v4](https://frontendmasters.com/courses/dev-tools-v4/) course on Frontend Masters.
+[![Frontend Masters](https://static.frontendmasters.com/assets/brand/logos/full.png)](https://frontendmasters.com/courses/dev-tools-v4/)
 
 ## Running the Site
 
